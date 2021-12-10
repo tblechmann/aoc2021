@@ -34,4 +34,20 @@ fun binaryStringToInteger(input: String): Int {
     return binaryIntListToInteger(input.toCharArray().map { c -> c - '0' })
 }
 
+fun <T>transposeMatrix(input: List<List<T>>): List<List<T>> {
+    val newHeight = input[0].size
+    val newWidth = input.size
 
+    check(input.all { it.size == newHeight })
+    val result = ArrayList<ArrayList<T>>(newHeight)
+
+    for (i in 0 until newHeight) {
+        val line = ArrayList<T>(newWidth)
+        for (j in 0 until newWidth) {
+            line.add(input[j][i])
+        }
+        result.add(line)
+    }
+
+    return result
+}
