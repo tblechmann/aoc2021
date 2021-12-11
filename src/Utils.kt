@@ -51,3 +51,7 @@ fun <T>transposeMatrix(input: List<List<T>>): List<List<T>> {
 
     return result
 }
+
+fun gauss(n: Double): Int {
+    return ((Math.pow(n,2.0) + n) / 2).toInt()
+}

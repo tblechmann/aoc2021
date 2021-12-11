@@ -1,14 +1,14 @@
 
 fun main() {
 
-    fun optimize(input: List<Int>): Int {
+    fun optimize(input: List<Int>, part1: Boolean = true): Int {
         val max = input.maxOf { it }
         val min = input.minOf { it }
         var minPosition = Pair(0, Int.MAX_VALUE)
 
         for (i in min .. max) {
             val fuelSum = input.fold(0) { acc, horizontalPosition ->
-                    val costs = Math.abs(i - horizontalPosition)
+                    val costs = if (part1) Math.abs(i - horizontalPosition) else gauss(Math.abs((i - horizontalPosition).toDouble()))
                     //System.out.println("Costs to move from ${horizontalPosition} to ${i} is ${costs}")
                     acc+costs
             }
@@ -28,16 +28,18 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        return TODO()
+        val crabPositions = input[0].split(',').map(Integer::parseInt)
+
+        return optimize(crabPositions, false)
     }
 
     // test if implementation meets criteria from the description, like:
     val testInput = readInput("Day07_test")
     check(part1(testInput) == 37)
-    //check(part2(testInput) == 26984457539L)
+    check(part2(testInput) == 168)
 
     val input = readInput("Day07")
     println(part1(input))
-    //println(part2(input))
+    println(part2(input))
 
 }
