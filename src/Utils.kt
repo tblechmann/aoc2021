@@ -55,3 +55,15 @@ fun <T>transposeMatrix(input: List<List<T>>): List<List<T>> {
 fun gauss(n: Double): Int {
     return ((Math.pow(n,2.0) + n) / 2).toInt()
 }
+
+fun Map<Char,Char>.getFirstKeyByValue(key: Char): Char? {
+    return entries.find { it.value == key}?.key
+}
+
+fun IntArray.toNumber(): Int {
+    return map { (it + '0'.code).toChar() }.joinToString("").toInt()
+}
+
+fun String.toCharSet(): Set<Char> {
+    return toCharArray().toSet()
+}
