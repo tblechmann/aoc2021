@@ -11,7 +11,12 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        TODO()
+        val field = OctopusField.fromLines(input)
+        var i = 1
+        while(field.increaseEnergy() != 100) {
+            i++
+        }
+        return i
     }
 
     fun checkDay11() {
@@ -54,11 +59,11 @@ fun main() {
     // test if implementation meets criteria from the description, like:
     val testInput = readInput("Day11_test")
     checkDay11()
-    //check(part2(testInput) == 5)
+    check(part2(testInput) == 195)
 
     val input = readInput("Day11")
     println(part1(input))
-    //println(part2(input))
+    println(part2(input))
 
 }
 
