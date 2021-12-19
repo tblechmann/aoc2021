@@ -56,54 +56,7 @@ fun main() {
 
 }
 
-class HeightMap(val numbers: IntArray, val rowLen: Int) {
-    fun isFirstLine(index: Int): Boolean {
-        return index < rowLen
-    }
-
-    fun isLastLine(index: Int): Boolean {
-        return (index >= numbers.size-rowLen) && (index < numbers.size)
-    }
-
-    fun isFirstColumn(index: Int): Boolean {
-        return index == 0 || (index % rowLen) == 0
-    }
-
-    fun isLastColumn(index: Int): Boolean {
-        return (index == numbers.size-1) || isFirstColumn(index+1)
-    }
-
-    fun getLeft(index: Int): Int {
-        return numbers[getLeftIndex(index)]
-    }
-
-    fun getLeftIndex(index: Int): Int {
-        return index-1
-    }
-
-    fun getRight(index: Int): Int {
-        return numbers[getRightIndex(index)]
-    }
-
-    fun getRightIndex(index: Int): Int {
-        return index+1
-    }
-
-    fun getTop(index: Int): Int {
-        return numbers[getTopIndex(index)]
-    }
-
-    fun getTopIndex(index: Int): Int {
-        return index-rowLen
-    }
-
-    fun getBottom(index: Int): Int {
-        return numbers[getBottomIndex(index)]
-    }
-
-    fun getBottomIndex(index: Int): Int {
-        return index+rowLen
-    }
+class HeightMap(numbers: IntArray,rowLen: Int): NumberMatrice(numbers, rowLen) {
 
     fun isLowPoint(index: Int): Boolean {
         val numberList = ArrayList<Int>(0)
