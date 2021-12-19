@@ -116,4 +116,79 @@ open class NumberMatrice(val numbers: IntArray, val rowLen: Int) {
     fun getBottomIndex(index: Int): Int {
         return index+rowLen
     }
+
+    fun getTopLeftIndex(index: Int): Int {
+        return getTopIndex(index)-1
+    }
+
+    fun getTopLeft(index: Int): Int {
+        return numbers[getTopLeftIndex(index)]
+    }
+
+    fun getTopRightIndex(index: Int): Int {
+        return getTopIndex(index)+1
+    }
+
+    fun getTopRight(index: Int): Int {
+        return numbers[getTopRightIndex(index)]
+    }
+
+    fun getBottomLeftIndex(index: Int): Int {
+        return getBottomIndex(index)-1
+    }
+
+    fun getBottomLeft(index: Int): Int {
+        return numbers[getBottomLeftIndex(index)]
+    }
+
+    fun getBottomRightIndex(index: Int): Int {
+        return getBottomIndex(index)+1
+    }
+
+    fun getBottomRight(index: Int): Int {
+        return numbers[getBottomRightIndex(index)]
+    }
+
+    fun getAdjacentIndices(index: Int): List<Int> {
+        val result = ArrayList<Int>(8)
+
+        if (!isFirstLine(index) && !isFirstColumn(index)) {
+            result.add(getTopLeftIndex(index))
+        }
+        if (!isFirstLine(index)) {
+            result.add(getTopIndex(index))
+        }
+        if (!isFirstLine(index) && !isLastColumn(index)) {
+            result.add(getTopRightIndex(index))
+        }
+        if (!isFirstColumn(index)) {
+            result.add(getLeftIndex(index))
+        }
+        if (!isLastColumn(index)) {
+            result.add(getRightIndex(index))
+        }
+        if (!isLastLine(index) && !isFirstColumn(index)) {
+            result.add(getBottomLeftIndex(index))
+        }
+        if (!isLastLine(index)) {
+            result.add(getBottomIndex(index))
+        }
+        if (!isLastLine(index) && !isLastColumn(index)) {
+            result.add(getBottomRightIndex(index))
+        }
+
+        return result
+    }
+
+    companion object {
+        fun fromLines(lines: List<String>): NumberMatrice {
+            val rowLen = lines[0].length
+            val numbers = lines.fold(ArrayList<Int>(rowLen*10)) { acc, value -> acc.addAll(value.split("").filter(String::isNotEmpty).map(Integer::parseInt)); acc }
+            return NumberMatrice(numbers.toIntArray(), rowLen)
+        }
+
+        fun fromLines(singleInputs: String): NumberMatrice {
+            return fromLines(singleInputs.split("\n"))
+        }
+    }
 }

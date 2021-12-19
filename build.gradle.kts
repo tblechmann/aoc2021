@@ -6,6 +6,11 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    // https://mvnrepository.com/artifact/org.hamcrest/hamcrest
+    implementation("org.assertj:assertj-core:3.21.0")
+}
+
 tasks {
     sourceSets {
         main {
